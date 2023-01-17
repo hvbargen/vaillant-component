@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import timedelta
 
 DOMAIN = "multimatic"
+SENSO = "SENSO"
 ENTITIES = "entities"
 
 # list of platforms into entity are created
@@ -34,6 +35,7 @@ MAX_QUICK_VETO_DURATION = 24 * 60
 # configuration keys
 CONF_QUICK_VETO_DURATION = "quick_veto_duration"
 CONF_SERIAL_NUMBER = "serial_number"
+CONF_APPLICATION = "application"
 
 # constants for states_attributes
 ATTR_QUICK_MODE = "quick_mode"

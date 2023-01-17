@@ -5,7 +5,7 @@
   "documentation": "https://github.com/thomasgermain/vaillant-component",
   "issue_tracker": "https://github.com/thomasgermain/vaillant-component/issues",
   "requirements": [
-    "pymultimatic==0.6.12"
+    "git+https://github.com/xaviergriffon/pymultiMATIC.git@senso_app#pymultiMATIC==0.7.0b1"
   ],
   "ssdp": [],
   "zeroconf": [],
