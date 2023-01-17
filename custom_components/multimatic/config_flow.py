@@ -6,9 +6,11 @@ from pymultimatic.systemmanager import SystemManager
 import voluptuous as vol
 
 from homeassistant import config_entries, core, exceptions
+from homeassistant.config_entries import ConfigEntry, OptionsFlow
 from homeassistant.const import CONF_PASSWORD, CONF_SCAN_INTERVAL, CONF_USERNAME
 from homeassistant.core import callback
-from homeassistant.helpers.aiohttp_client import async_get_clientsession
+from homeassistant.data_entry_flow import FlowResult
+from homeassistant.helpers.aiohttp_client import async_create_clientsession
 import homeassistant.helpers.config_validation as cv
 
 from .const import CONF_SERIAL_NUMBER, DEFAULT_SCAN_INTERVAL, DOMAIN
@@ -39,7 +41,7 @@ async def validate_authentication(hass, username, password):
     """Ensure provided credentials are working."""
     try:
         if not await SystemManager(
-            username, password, async_get_clientsession(hass)
+            username, password, async_create_clientsession(hass)
         ).login(True):
             raise InvalidAuth
     except ApiError as err:
@@ -60,11 +62,11 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     @staticmethod
     @callback
-    def async_get_options_flow(config_entry):
+    def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow:
         """Get the options flow for this handler."""
         return MultimaticOptionsFlowHandler(config_entry)
 
-    async def async_step_user(self, user_input=None):
+    async def async_step_user(self, user_input=None) -> FlowResult:
         """Handle the initial step."""
         errors = {}
         if user_input is not None:
@@ -92,7 +94,7 @@ class MultimaticOptionsFlowHandler(config_entries.OptionsFlow):
         """Initialize options flow."""
         self.config_entry = config_entry
 
-    async def async_step_init(self, user_input=None):
+    async def async_step_init(self, user_input=None) -> FlowResult:
         """Handle options flow."""
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
