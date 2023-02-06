@@ -251,7 +251,7 @@ class MultimaticApi:
             await self._manager.remove_zone_quick_veto(zone.id)
 
         # Senso needs a duration, applying the same duration as the Multimatic default.
-        duration = 6 if self._manager._application == defaults.SENSO else 360
+        duration = (DEFAULT_QUICK_VETO_DURATION // 60) if self._manager._application == defaults.SENSO else 360
         veto = QuickVeto(duration, target_temp)
         await self._manager.set_zone_quick_veto(zone.id, veto)
         zone.quick_veto = veto
