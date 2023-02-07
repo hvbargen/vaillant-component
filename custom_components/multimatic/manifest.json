@@ -5,13 +5,13 @@
   "documentation": "https://github.com/thomasgermain/vaillant-component",
   "issue_tracker": "https://github.com/thomasgermain/vaillant-component/issues",
   "requirements": [
-    "git+https://github.com/hvbargen/pymultiMATIC.git@senso_app#pymultiMATIC==0.7.0b1"
+    "git+https://github.com/hvbargen/pymultiMATIC.git@senso_app#pymultiMATIC==0.7.0b2"
   ],
   "ssdp": [],
   "zeroconf": [],
   "homekit": {},
   "dependencies": [],
   "codeowners": ["@thomasgermain"],
-    "version": "1.13.0",
+    "version": "1.14.0b1",
   "iot_class": "cloud_polling"
 }
